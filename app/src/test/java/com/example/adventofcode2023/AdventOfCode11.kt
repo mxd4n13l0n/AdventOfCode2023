@@ -56,33 +56,6 @@ class AdventOfCode11 {
         }
     }
 
-    private fun expandTheUniverse(map: List<String>): List<String> {:s
-        val horizontalExpansion = getHorizontalExpansionIndices(map)
-        val verticalExpansion = getVerticalExpansionIndices(map)
-
-        val horizontalExpanded = mutableListOf<String>()
-        for (y in 0..map.lastIndex) {
-            val newRow = StringBuilder()
-            for (x in 0..map[y].lastIndex) {
-                if (x in horizontalExpansion) {
-                    newRow.append("..")
-                } else {
-                    newRow.append(map[y][x])
-                }
-            }
-            horizontalExpanded.add(newRow.toString())
-        }
-
-        val verticalExpanded = mutableListOf<String>()
-        for (y in 0..map.lastIndex) {
-            if (y in verticalExpansion) {
-                verticalExpanded.add(".".repeat(horizontalExpanded.first().length))
-            }
-            verticalExpanded.add(horizontalExpanded[y])
-        }
-        return verticalExpanded
-    }
-
     private fun getHorizontalExpansionIndices(map: List<String>): List<Int> {
         val horizontalExpansion = mutableListOf<Int>()
         for (i in 0..map.first().lastIndex) {
